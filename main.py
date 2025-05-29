@@ -1,8 +1,11 @@
+from equipment import Armor, Weapon
 from hero import Hero
+from item import HealingPotion
 from monster import Monster
+from lists import potions, armors, weapons
 
-orc = Monster('orc', 10, 1, 2)
-print(orc.damage)
+""" orc = Monster('orc', 10, 1, 2)
+print(orc.damage) """
 
 
 print('Welcome to RPG!')
@@ -21,7 +24,7 @@ elif movement == 'f':
 else:
     print('Invalid movement')
 
-orc = Monster('orc', 10, 1, 2)
+orc = Monster('orc', 10, 1, 2, potions + armors + weapons)
 print('{0} meets an angry {1} that is about to attack.'.format(hero.name, orc.name))
 while hero.hp > 0 | orc.hp > 0:
     hero.attack()
@@ -34,5 +37,24 @@ while hero.hp > 0 | orc.hp > 0:
 
 if orc.hp <= 0:
     print('{0} has died.'.format(orc.name))
+    orc.dropLoot()
+    hero.addToInventory(orc.loot)
 elif hero.hp <= 0:
     print('You died.')
+
+if isinstance(hero.inventory[0], HealingPotion):
+    useItem = input('Would you like to use a potion? y/n: ')
+    if useItem == 'y':
+        print('Hero hp: {0}'.format(hero.hp))
+        hero.inventory[0].use(hero)
+        print('Hero hp: {0}'.format(hero.hp))
+elif isinstance(hero.inventory[0], Armor):
+    equipItem = input('Would you like to equip this armor? Your current armor def: {0}, new armor def: {1}. y/n: '.format(hero.armor.defense, hero.inventory[0].defense))
+    if equipItem == 'y':
+        hero.addArmor(hero.inventory[0])
+        print('Hero defense: {0}, armor: {1}'.format(hero.defense, hero.armor.name))
+elif isinstance(hero.inventory[0], Weapon):
+    equipItem = input('Would you like to equip this weapon? Your current weapon minAttack/maxAttack: {0}/{1}, new weapon min/max: {2}/{3}. y/n: '.format(hero.weapon.minAttack, hero.weapon.maxAttack, hero.inventory[0].minAttack, hero.inventory[0].maxAttack))
+    if equipItem == 'y':
+        hero.addWeapon(hero.inventory[0])
+        print('Hero weapon: {0}'.format(hero.weapon.name))
