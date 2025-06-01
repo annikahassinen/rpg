@@ -1,5 +1,6 @@
 from equipment import Armor, Weapon
 from item import HealingPotion
+from monster import Monster
 
 
 potions = [HealingPotion(10), HealingPotion(15), HealingPotion(5)]
@@ -23,3 +24,15 @@ weapons = [Weapon(minAttack=1, maxAttack=3, name='Wooden sword'),
            Weapon(minAttack=12, maxAttack=14, name='Viking sword'),
            Weapon(minAttack=15, maxAttack=17, name='Mithril sword')
            ]
+
+monsters = [
+    Monster('orc', 10, 1, 2, potions + armors + weapons),
+    Monster('harpy', 12, 2, 3, potions + armors + weapons),
+    Monster('wolf', 15, 3, 4, potions + armors + weapons),
+    Monster('bear', 20, 4, 6, potions + armors + weapons),
+    Monster('bandit', 20, 5, 8, potions + armors + weapons),
+    Monster('wizard', 15, 10, 11, potions + armors + weapons),
+    Monster('griffon', 25, 10, 11, potions + armors + weapons),
+    Monster('medusa', 25, 12, 14, potions + armors + weapons),
+    Monster('dragon', 50, 15, 20, potions + armors + weapons),
+]

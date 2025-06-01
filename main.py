@@ -3,6 +3,7 @@ from hero import Hero
 from item import HealingPotion
 from monster import Monster
 from lists import potions, armors, weapons
+from logic import userChoice, encounter, useLoot
 
 """ orc = Monster('orc', 10, 1, 2)
 print(orc.damage) """
@@ -12,7 +13,11 @@ print('Welcome to RPG!')
 print('Your hero is eager to go to an adventure.')
 heroName = input("What is the hero's name? ")
 hero = Hero(heroName)
-print("{0}'s stats: {1} hp, {2} def, weapon: {3}, armor: {4}".format(hero.name, hero.hp, hero.defense, hero.weapon.name, hero.armor))
+
+while hero.hp > 0:
+    userChoice(hero)
+
+""" print("{0}'s stats: {1} hp, {2} def, weapon: {3}, armor: {4}".format(hero.name, hero.hp, hero.defense, hero.weapon.name, hero.armor))
 movement =input('Where would you like to go? l = left, r = right, f = forward: ')
 
 if movement == 'l':
@@ -57,4 +62,4 @@ elif isinstance(hero.inventory[0], Weapon):
     equipItem = input('Would you like to equip this weapon? Your current weapon minAttack/maxAttack: {0}/{1}, new weapon min/max: {2}/{3}. y/n: '.format(hero.weapon.minAttack, hero.weapon.maxAttack, hero.inventory[0].minAttack, hero.inventory[0].maxAttack))
     if equipItem == 'y':
         hero.addWeapon(hero.inventory[0])
-        print('Hero weapon: {0}'.format(hero.weapon.name))
+        print('Hero weapon: {0}'.format(hero.weapon.name)) """

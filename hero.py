@@ -9,6 +9,7 @@ class Hero:
     weapon = Weapon(minAttack=1, maxAttack=5, name='Wooden sword')
     damage = 0
     inventory = []
+    gameOn = True
 
     def __init__(self, name):
         self.name = name
@@ -18,15 +19,18 @@ class Hero:
     
     def addArmor(self, armor):
         self.armor = armor
-        self.defense += armor.defense
 
     def attack(self):
         self.damage = random.randrange(self.weapon.minAttack, self.weapon.maxAttack)
         print('Hero damage: {0}'.format(self.damage))
     
     def takeDamage(self, damage):
-        self.hp -= damage
+        totalDefense = self.defense + self.armor.defense
+        if totalDefense > damage:
+            self.hp -= 1
+        else:
+            self.hp -= (damage - totalDefense)
 
     def addToInventory(self, item):
-        self.inventory.append(item)
+        self.inventory.insert(0, item)
         print('Inventory: {0}'.format(self.inventory))

@@ -21,5 +21,5 @@ class Monster:
     def dropLoot(self):
         item = random.choice(self.lootPool)
         self.loot = item
-        print('{0} dropped {1}hp'.format(self.name, self.loot.name))
+        print('{0} dropped {1}'.format(self.name, self.loot.name))
 
