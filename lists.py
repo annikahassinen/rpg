@@ -26,13 +26,13 @@ weapons = [Weapon(minAttack=1, maxAttack=3, name='Wooden sword'),
            ]
 
 monsters = [
-    Monster('orc', 10, 1, 2, potions + armors + weapons),
-    Monster('harpy', 12, 2, 3, potions + armors + weapons),
-    Monster('wolf', 15, 3, 4, potions + armors + weapons),
-    Monster('bear', 20, 4, 6, potions + armors + weapons),
-    Monster('bandit', 20, 5, 8, potions + armors + weapons),
-    Monster('wizard', 15, 10, 11, potions + armors + weapons),
-    Monster('griffon', 25, 10, 11, potions + armors + weapons),
-    Monster('medusa', 25, 12, 14, potions + armors + weapons),
-    Monster('dragon', 50, 15, 20, potions + armors + weapons),
+    Monster('orc', 10, 1, 2, potions + armors + weapons, exp=3, level=1),
+    Monster('harpy', 12, 2, 3, potions + armors + weapons, exp=5, level=2),
+    Monster('wolf', 15, 3, 4, potions + armors + weapons, exp=10, level=3),
+    Monster('bear', 20, 4, 6, potions + armors + weapons, exp=12, level=4),
+    Monster('bandit', 20, 5, 8, potions + armors + weapons, exp=15, level=5),
+    Monster('wizard', 15, 10, 11, potions + armors + weapons, exp=18, level=6),
+    Monster('griffon', 25, 10, 11, potions + armors + weapons, exp=20, level=7),
+    Monster('medusa', 25, 12, 14, potions + armors + weapons, exp=25, level=8),
+    Monster('dragon', 50, 15, 20, potions + armors + weapons, exp=30, level=10),
 ]

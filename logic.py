@@ -1,3 +1,4 @@
+import copy
 import random
 import sys
 from equipment import Armor, Weapon
@@ -30,9 +31,15 @@ def userChoice(hero):
         print('Invalid movement')
 
 def encounter(hero):
-    monster = random.choice(monsters)
+    available_monsters = []
+    allMonsters = copy.deepcopy(monsters)
+    for i in allMonsters:
+        if i.level <= hero.level:
+            available_monsters.append(i)
+            print('Added {0}'.format(i.name))
+    monster = random.choice(available_monsters)
     print('{0} meets an angry {1} that is about to attack. Monster hp: {2}'.format(hero.name, monster.name, monster.hp))
-    while hero.hp > 0 | monster.hp > 0:
+    while hero.hp > 0 and monster.hp > 0:
         hero.attack()
         monster.takeDamage(hero.damage)
         print('You attack with {0} damage. {1} has {2} hp.'.format(hero.damage, monster.name, monster.hp))
@@ -45,10 +52,10 @@ def encounter(hero):
         print('{0} has died.'.format(monster.name))
         monster.dropLoot()
         hero.addToInventory(monster.loot)
+        hero.addExp(monster.exp)
         useLoot(hero)
     elif hero.hp <= 0:
         print('You died.')
-        hero.gameOn = False
 
 def useLoot(hero):
     if isinstance(hero.inventory[0], HealingPotion):
@@ -67,3 +74,5 @@ def useLoot(hero):
         if equipItem == 'y':
             hero.addWeapon(hero.inventory[0])
             print('Hero weapon: {0}'.format(hero.weapon.name))
+    
+    userChoice(hero)

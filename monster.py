@@ -4,12 +4,14 @@ import random
 class Monster:
     damage = 0
 
-    def __init__(self, name, hp, minAttack, maxAttack, lootPool):
+    def __init__(self, name, hp, minAttack, maxAttack, lootPool, exp, level):
         self.name = name
         self.hp = hp
         self.minAttack = minAttack
         self.maxAttack = maxAttack
         self.lootPool = lootPool
+        self.exp = exp
+        self.level = level
 
     def takeDamage(self, damage):
         self.hp = self.hp - damage
@@ -22,4 +24,3 @@ class Monster:
         item = random.choice(self.lootPool)
         self.loot = item
         print('{0} dropped {1}'.format(self.name, self.loot.name))
-

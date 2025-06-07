@@ -9,7 +9,9 @@ class Hero:
     weapon = Weapon(minAttack=1, maxAttack=5, name='Wooden sword')
     damage = 0
     inventory = []
-    gameOn = True
+    level = 1
+    exp = 0
+    maxHp = 100
 
     def __init__(self, name):
         self.name = name
@@ -33,4 +35,16 @@ class Hero:
 
     def addToInventory(self, item):
         self.inventory.insert(0, item)
-        print('Inventory: {0}'.format(self.inventory))
+
+    def addExp(self, exp):
+        self.exp += exp
+        if self.exp >= self.level * 10:
+            self.levelUp()
+
+    def levelUp(self):
+        self.level += 1
+        self.defense += 1
+        self.maxHp = 100 + self.level * 10
+        self.hp = self.maxHp
+        self.exp = 0
+        print("LEVEL UP! You are now level {0}!".format(self.level))
