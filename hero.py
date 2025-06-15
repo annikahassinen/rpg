@@ -22,10 +22,12 @@ class Hero:
     def addArmor(self, armor):
         self.armor = armor
 
+    # hero attack is random between the min and max attack of the weapon
     def attack(self):
         self.damage = random.randrange(self.weapon.minAttack, self.weapon.maxAttack)
         print('Hero damage: {0}'.format(self.damage))
     
+    # the monster damage is reduced by the defense of the hero and the armor they wear
     def takeDamage(self, damage):
         totalDefense = self.defense + self.armor.defense
         if totalDefense > damage:
@@ -41,6 +43,7 @@ class Hero:
         if self.exp >= self.level * 10:
             self.levelUp()
 
+    # increase stats and restore hp when level up
     def levelUp(self):
         self.level += 1
         self.defense += 1

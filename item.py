@@ -1,6 +1,4 @@
-import hero
-
-
+# in case other kinds of items are added later, for now only healing potions
 class Item:
 
     def __init__(self, name, increase):

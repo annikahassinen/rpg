@@ -16,10 +16,12 @@ class Monster:
     def takeDamage(self, damage):
         self.hp = self.hp - damage
     
+    # damage is randomized based on the min and max attack
     def attack(self):
         self.damage = random.randrange(self.minAttack, self.maxAttack)
         print('Monster damage: {0}'.format(self.damage))
-            
+
+    # drop random loot when dead        
     def dropLoot(self):
         item = random.choice(self.lootPool)
         self.loot = item
